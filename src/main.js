@@ -1,7 +1,7 @@
 // game config
 let config = {
     type: Phaser.AUTO,
-    width: 600,
+    width: 700,
     height: 400,
     physics: {
         default: "arcade",
@@ -9,7 +9,7 @@ let config = {
             debug: true
         }
     },
-    scene: [ Simple ]
+    scene: [ TripleCam ]
 }
 
 let game = new Phaser.Game(config);
