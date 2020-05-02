@@ -17,10 +17,10 @@ class SnapTo extends Phaser.Scene {
         this.bgSize = 3000;
         this.resetDuration = 1500;
 
-        // add background
+        // add background image
         this.bg = this.add.image(0, 0, 'gradientBG').setOrigin(0);
 
-        // randomize trees
+        // randomize trees within a group
         let treeGroup = this.add.group();
         let tree;
         for(let i = 0; i < 10; i++) {

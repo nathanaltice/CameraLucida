@@ -1,3 +1,9 @@
+// Nathan Altice
+// Created: 5/1/20
+// Updated: 5/2/20
+// Camera Lucida
+// Phaser 3 project demonstrating camera features, paths, path followers
+
 // game config
 let config = {
     type: Phaser.AUTO,
