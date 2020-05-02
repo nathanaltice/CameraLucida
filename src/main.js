@@ -6,10 +6,10 @@ let config = {
     physics: {
         default: "arcade",
         arcade: {
-            debug: true
+            //debug: true
         }
     },
-    scene: [ TripleCam ]
+    scene: [ TripleCam, SnapTo ]
 }
 
 let game = new Phaser.Game(config);

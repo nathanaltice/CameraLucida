@@ -1,15 +1,13 @@
-class TripleCam extends Phaser.Scene {
+class SnapTo extends Phaser.Scene {
     constructor() {
-        super("tripleCamScene");
+        super("snapToScene");
     }
 
     preload() {
         // load assets
         this.load.path = "assets/";
-        this.load.image('gradientBG', 'gradientBG.png');
-        this.load.image('copter', 'copter.png');
-        this.load.image('tree01', 'tree01.png');
-        this.load.image('tree02', 'tree02.png');
+        this.load.image('car', 'car.png');
+        this.load.image('boat', 'boat.png');
     }
 
     create() {
@@ -19,8 +17,10 @@ class TripleCam extends Phaser.Scene {
         // add background
         this.add.image(0, 0, 'gradientBG').setOrigin(0);
 
-        // add copter
-        this.copter = this.physics.add.sprite(0, 0, 'copter').setRandomPosition(0, 0, 3000, 3000);
+        // add transportation
+        this.copter = this.physics.add.sprite(200, 200, 'copter');
+        this.car = this.physics.add.sprite(200, 400, 'car');
+        this.boat = this.physics.add.sprite(200, 600, 'boat');
 
         // randomize trees
         for(let i = 0; i < 10; i++) {
@@ -30,30 +30,28 @@ class TripleCam extends Phaser.Scene {
 
         // configure main camera (bg image is 3000x3000)
         this.cameras.main.setBounds(0, 0, 3000, 3000);
-        this.cameras.main.setZoom(0.75);
+        this.cameras.main.setZoom(0.5);
         this.cameras.main.startFollow(this.copter);
         this.cameras.main.setName("center");
 
-        // add left camera
-        this.leftCamera = this.cameras.add(0, 0, 100, game.config.height).setZoom(0.25);
-        this.leftCamera.setBounds(0, 0, 3000, 3000);
-        this.leftCamera.startFollow(this.copter);
-        this.leftCamera.setAlpha(0.75);
-        this.leftCamera.setName("left");
+        // setup graphics object (so we can draw paths)
+        let graphics = this.add.graphics();
+        graphics.lineStyle(2, 0xFFFFFF, 0.75);      // lineWidth, color, alpha
 
-        // add right camera
-        this.rightCamera = this.cameras.add(game.config.width - 100, 0, 100, game.config.height).setZoom(0.5);
-        this.rightCamera.setBounds(0, 0, 3000, 3000);
-        this.rightCamera.setScroll(1500, 1000);  
-        this.rightCamera.startFollow(this.copter);
-        this.rightCamera.setName("right");
+        // add path object(s)
+        this.copterPath = this.add.path(100, 100);  // start of path
+        this.copterPath.lineTo(900, 400);           // next path point
+        this.copterPath.lineTo(100, 400);           // next
+        this.copterPath.lineTo(100, 100);           // and back to start
+        this.copterPath.draw(graphics);             // draw path
+
+        this.carPath = this.add.path(2200, 1300);     // start of path
+        this.carPath.circleTo(200);                 // radius of circle path
+        this.carPath.draw(graphics);                // draw path
 
         // set up input
         cursors = this.input.keyboard.createCursorKeys();
 
-        // debug info
-        //console.log(this.cameras);
-        this.scene.start("snapToScene");
     }
 
     update() {
@@ -74,5 +72,9 @@ class TripleCam extends Phaser.Scene {
         } else {
             this.copter.body.setVelocityX(0);
         }
+    }
+
+    moveCam(target) {
+
     }
 }
