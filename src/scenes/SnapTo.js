@@ -146,7 +146,7 @@ class SnapTo extends Phaser.Scene {
         });
         
         // DEBUG ONLY: to "see" the UI camera, uncomment the line below
-        // this.UICamera.setBackgroundColor(0xFACADE);
+        //this.UICamera.setBackgroundColor(0xFACADE);
     }
 
     moveCam() {

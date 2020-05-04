@@ -34,7 +34,6 @@ class TripleCam extends Phaser.Scene {
         // have camera follow copter
         // startFollow(target [, roundPixels] [, lerpX] [, lerpY] [, offsetX] [, offsetY])
         this.cameras.main.startFollow(this.copter, true, 0.1, 0.1);
-        this.cameras.main.centerOn(this.copter.x, this.copter.y);
         // set camera dead zone
         this.cameras.main.setDeadzone(200, 200);
         this.cameras.main.setName("center");
@@ -43,7 +42,6 @@ class TripleCam extends Phaser.Scene {
         this.leftCamera = this.cameras.add(0, 0, 150, game.config.height).setZoom(0.25);
         this.leftCamera.setBounds(0, 0, 3000, 3000);
         this.leftCamera.startFollow(this.copter);
-        this.cameras.main.centerOn(this.copter.x, this.copter.y);
         this.leftCamera.setAlpha(0.75);
         this.leftCamera.setName("left");
 
@@ -52,7 +50,6 @@ class TripleCam extends Phaser.Scene {
         this.rightCamera.setBounds(0, 0, 3000, 3000);
         this.rightCamera.setScroll(1500, 1000);  
         this.rightCamera.startFollow(this.copter);
-        this.cameras.main.centerOn(this.copter.x, this.copter.y);
         this.rightCamera.setName("right");
 
         // set up input
