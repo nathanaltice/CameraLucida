@@ -14,13 +14,13 @@ class TripleCam extends Phaser.Scene {
 
     create() {
         // variables
-        this.copterVelocity = 300;
+        this.copterVelocity = 500;
 
         // add background
         this.add.image(0, 0, 'gradientBG').setOrigin(0);
 
         // add copter
-        this.copter = this.physics.add.sprite(0, 0, 'copter').setRandomPosition(0, 0, 3000, 3000);
+        this.copter = this.physics.add.sprite(0, 0, 'copter').setRandomPosition(200, 200, 2800, 2800);
 
         // randomize trees
         for(let i = 0; i < 10; i++) {
@@ -31,29 +31,39 @@ class TripleCam extends Phaser.Scene {
         // configure main camera (bg image is 3000x3000)
         this.cameras.main.setBounds(0, 0, 3000, 3000);
         this.cameras.main.setZoom(0.75);
-        this.cameras.main.startFollow(this.copter);
+        // have camera follow copter
+        // startFollow(target [, roundPixels] [, lerpX] [, lerpY] [, offsetX] [, offsetY])
+        this.cameras.main.startFollow(this.copter, true, 0.1, 0.1);
+        this.cameras.main.centerOn(this.copter.x, this.copter.y);
+        // set camera dead zone
+        this.cameras.main.setDeadzone(200, 200);
         this.cameras.main.setName("center");
 
         // add left camera
-        this.leftCamera = this.cameras.add(0, 0, 100, game.config.height).setZoom(0.25);
+        this.leftCamera = this.cameras.add(0, 0, 150, game.config.height).setZoom(0.25);
         this.leftCamera.setBounds(0, 0, 3000, 3000);
         this.leftCamera.startFollow(this.copter);
+        this.cameras.main.centerOn(this.copter.x, this.copter.y);
         this.leftCamera.setAlpha(0.75);
         this.leftCamera.setName("left");
 
         // add right camera
-        this.rightCamera = this.cameras.add(game.config.width - 100, 0, 100, game.config.height).setZoom(0.5);
+        this.rightCamera = this.cameras.add(game.config.width - 150, 0, 150, game.config.height).setZoom(0.5);
         this.rightCamera.setBounds(0, 0, 3000, 3000);
         this.rightCamera.setScroll(1500, 1000);  
         this.rightCamera.startFollow(this.copter);
+        this.cameras.main.centerOn(this.copter.x, this.copter.y);
         this.rightCamera.setName("right");
 
         // set up input
         cursors = this.input.keyboard.createCursorKeys();
+        let swap = this.input.keyboard.addKey('S');
+        swap.on('down', () => {
+            this.scene.start("snapToScene");
+        });
 
-        // debug info
+        // DEBUG only
         //console.log(this.cameras);
-        this.scene.start("snapToScene");
     }
 
     update() {

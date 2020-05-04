@@ -15,16 +15,15 @@ class SnapTo extends Phaser.Scene {
         // variables
         const iconScale = 0.25;
         this.bgSize = 3000;
-        this.resetDuration = 1500;
+        this.resetDuration = 2500;
 
         // add background image
         this.bg = this.add.image(0, 0, 'gradientBG').setOrigin(0);
 
         // randomize trees within a group
         let treeGroup = this.add.group();
-        let tree;
         for(let i = 0; i < 10; i++) {
-            tree = this.add.image(0, 0, 'tree01').setRandomPosition(0, 0, 3000, 3000);
+            let tree = this.add.image(0, 0, 'tree01').setRandomPosition(0, 0, 3000, 3000);
             treeGroup.add(tree);
             tree = this.add.image(0, 0, 'tree02').setRandomPosition(0, 0, 3000, 3000);
             treeGroup.add(tree);
@@ -139,6 +138,12 @@ class SnapTo extends Phaser.Scene {
         // add UI camera (ie it ignores all objects other than UI icons)
         this.UICamera = this.cameras.add(0, 0, game.config.width, game.config.height).setZoom(1);
         this.UICamera.ignore([this.bg, treeGroup, graphics, this.car, this.boat, this.copter]);
+
+        // input
+        let swap = this.input.keyboard.addKey('S');
+        swap.on('down', () => {
+            this.scene.start("fourViewsScene");
+        });
         
         // DEBUG ONLY: to "see" the UI camera, uncomment the line below
         // this.UICamera.setBackgroundColor(0xFACADE);
@@ -148,15 +153,15 @@ class SnapTo extends Phaser.Scene {
         // startFollow(target [, roundPixels] [, lerpX] [, lerpY] [, offsetX] [, offsetY])
         this.scene.cameras.main.startFollow(this.objKey, false, 0.1, 0.1);
         // zoom in: zoomTo(zoom [, duration] [, ease] [, force] [, callback] [, context])
-        this.scene.cameras.main.zoomTo(1, this.resetDuration, 'Linear', false);
+        this.scene.cameras.main.zoomTo(1, this.resetDuration, 'Sine.easeInOut', false);
     }
 
     resetCam() {
         // stop following game objects
         this.scene.cameras.main.stopFollow();
         // pan to center world: pan(x, y [, duration] [, ease] [, force] [, callback] [, context])
-        this.scene.cameras.main.pan(1500, 1500);
+        this.scene.cameras.main.pan(1500, 1500, this.resetDuration, 'Sine.easeInOut');
         // zoom out
-        this.scene.cameras.main.zoomTo(0.5, this.resetDuration, 'Linear', false);
+        this.scene.cameras.main.zoomTo(0.25, this.resetDuration, 'Sine.easeInOut', false);
     }
 }

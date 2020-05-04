@@ -1,21 +1,24 @@
 // Nathan Altice
 // Created: 5/1/20
-// Updated: 5/2/20
+// Updated: 5/3/20
 // Camera Lucida
-// Phaser 3 project demonstrating camera features, paths, path followers
+// Phaser 3 project demonstrating camera features, paths, path followers, etc.
+
+// JavaShrek tamer
+'use strict';
 
 // game config
 let config = {
     type: Phaser.AUTO,
-    width: 700,
-    height: 400,
+    width: 800,
+    height: 600,
     physics: {
         default: "arcade",
         arcade: {
             //debug: true
         }
     },
-    scene: [ TripleCam, SnapTo ]
+    scene: [ TripleCam, SnapTo, FourViews ]
 }
 
 let game = new Phaser.Game(config);
