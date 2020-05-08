@@ -43,7 +43,7 @@ class SmoothedController extends Phaser.Scene {
         this.cameras.main.setZoom(0.5);
 
         // DEBUG
-        console.log(this.cameras);
+        //console.log(this.cameras);
 
     }
 
