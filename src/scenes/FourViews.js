@@ -104,7 +104,7 @@ class FourViews extends Phaser.Scene {
 
         // Scene change
         if(Phaser.Input.Keyboard.JustDown(this.swap)) {
-            this.scene.start("tripleCamScene");
+            this.scene.start("fixedControllerScene");
         }
     }
 

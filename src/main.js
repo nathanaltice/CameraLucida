@@ -19,7 +19,7 @@ let config = {
             //debug: true
         }
     },
-    scene: [ TripleCam, SnapTo, FourViews ]
+    scene: [ TripleCam, SnapTo, FourViews, FixedController, SmoothedController ]
 }
 
 let game = new Phaser.Game(config);
