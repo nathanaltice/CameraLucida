@@ -140,13 +140,17 @@ class SnapTo extends Phaser.Scene {
         this.UICamera.ignore([this.bg, treeGroup, graphics, this.car, this.boat, this.copter]);
 
         // input
-        let swap = this.input.keyboard.addKey('S');
-        swap.on('down', () => {
-            this.scene.start("fourViewsScene");
-        });
+        this.swap = this.input.keyboard.addKey('S');
         
-        // DEBUG ONLY: to "see" the UI camera, uncomment the line below
+        // DEBUG: to "see" the UI camera, uncomment the line below
         //this.UICamera.setBackgroundColor(0xFACADE);
+    }
+
+    update() {
+        // Scene change
+        if(Phaser.Input.Keyboard.JustDown(this.swap)) {
+            this.scene.start("fourViewsScene");
+        }
     }
 
     moveCam() {

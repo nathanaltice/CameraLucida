@@ -77,12 +77,9 @@ class FourViews extends Phaser.Scene {
 
         // set up input
         cursors = this.input.keyboard.createCursorKeys();
-        let swap = this.input.keyboard.addKey('S');
-        swap.on('down', () => {
-            this.scene.start("tripleCamScene");
-        });
+        this.swap = this.input.keyboard.addKey('S');
 
-        // DEBUG only
+        // DEBUG
         //console.log(this.cameras);
     }
 
@@ -103,6 +100,11 @@ class FourViews extends Phaser.Scene {
             this.copter.resetFlip();
         } else {
             this.copter.body.setVelocityX(0);
+        }
+
+        // Scene change
+        if(Phaser.Input.Keyboard.JustDown(this.swap)) {
+            this.scene.start("tripleCamScene");
         }
     }
 
