@@ -31,7 +31,7 @@ class SnapTo extends Phaser.Scene {
 
         // setup graphics object (so we can draw paths)
         let graphics = this.add.graphics();
-        graphics.lineStyle(2, 0xFFFFFF, 0.75);      // lineWidth, color, alpha
+        graphics.lineStyle(2, 0xFFFFFF, 0.75);  // lineWidth, color, alpha
 
         // add car path
         this.carPath = this.add.path(100, 100); // start of path
