@@ -1,6 +1,6 @@
 // Nathan Altice
 // Created: 5/1/20
-// Updated: 5/3/20
+// Updated: 5/3/23
 // Camera Lucida
 // Phaser 3 project demonstrating camera features, paths, path followers, etc.
 

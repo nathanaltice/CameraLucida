@@ -25,7 +25,7 @@ class FixedController extends Phaser.Scene {
             right: cursors.right,
             up: cursors.up,
             down: cursors.down,
-            speed: { x: 0.5, y: 0.5 }         // set speed of camera (keep values low)
+            speed: { x: 0.5, y: 0.5 }       // set speed of camera (keep values low)
         }
         // create fixed key camera control
         // i.e., we control the cam w/ precise key control
