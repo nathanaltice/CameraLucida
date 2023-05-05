@@ -62,22 +62,21 @@ class TripleCam extends Phaser.Scene {
 
     update() {
         // player input
+        let copterDirection = new Phaser.Math.Vector2();
         if(cursors.up.isDown) {
-            this.copter.body.setVelocityY(-this.copterVelocity);
+            copterDirection.y = - 1;
         } else if (cursors.down.isDown) {
-            this.copter.body.setVelocityY(this.copterVelocity);
-        } else {
-            this.copter.body.setVelocityY(0);
+            copterDirection.y = 1;
         }
         if(cursors.left.isDown) {
-            this.copter.body.setVelocityX(-this.copterVelocity);
+            copterDirection.x = -1;
             this.copter.setFlipX(true);
         } else if (cursors.right.isDown) {
-            this.copter.body.setVelocityX(this.copterVelocity);
+            copterDirection.x = 1;
             this.copter.resetFlip();
-        } else {
-            this.copter.body.setVelocityX(0);
-        }
+        } 
+        copterDirection.normalize();
+        this.copter.setVelocity(this.copterVelocity * copterDirection.x, this.copterVelocity * copterDirection.y);
 
         // Scene change
         if(Phaser.Input.Keyboard.JustDown(this.swap)) {
