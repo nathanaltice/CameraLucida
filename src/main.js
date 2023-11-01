@@ -4,8 +4,7 @@
 // Camera Lucida
 // Phaser 3 project demonstrating camera features, paths, path followers, etc.
 
-// JavaShrek tamer
-'use strict';
+'use strict'
 
 // game config
 let config = {
@@ -22,8 +21,8 @@ let config = {
     scene: [ TripleCam, SnapTo, FourViews, FixedController, SmoothedController ]
 }
 
-let game = new Phaser.Game(config);
+let game = new Phaser.Game(config)
 
-const centerX = game.config.width / 2;
-const centerY = game.config.height / 2;
-let cursors = null;
+const centerX = game.config.width / 2
+const centerY = game.config.height / 2
+let cursors = null
