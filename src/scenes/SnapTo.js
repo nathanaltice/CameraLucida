@@ -3,6 +3,12 @@ class SnapTo extends Phaser.Scene {
         super("snapToScene")
     }
 
+    init() {
+        this.iconScale = 0.25
+        this.bgSize = 3000
+        this.resetDuration = 2500
+    }
+
     preload() {
         // load assets
         this.load.path = "assets/"
@@ -12,11 +18,6 @@ class SnapTo extends Phaser.Scene {
     }
 
     create() {
-        // variables
-        const iconScale = 0.25
-        this.bgSize = 3000
-        this.resetDuration = 2500
-
         // add background image
         this.bg = this.add.image(0, 0, 'gradientBG').setOrigin(0)
 
@@ -95,28 +96,28 @@ class SnapTo extends Phaser.Scene {
         this.icons = this.add.group()
         {   
             // copter
-            this.copterIcon = this.add.image(0, 0, 'copter').setOrigin(0, 0.5).setScale(iconScale)
+            this.copterIcon = this.add.image(0, 0, 'copter').setOrigin(0, 0.5).setScale(this.iconScale)
             this.copterIcon.setScrollFactor(0)     // attach to camera
             this.copterIcon.tint = 0x000000
             this.copterIcon.objKey = this.copter   // we need this to set a target for the camera
             this.copterIcon.setInteractive({ useHandCursor: true })
             
             // car
-            this.carIcon = this.add.image(0, 0, 'car').setOrigin(0, 0.5).setScale(iconScale)
+            this.carIcon = this.add.image(0, 0, 'car').setOrigin(0, 0.5).setScale(this.iconScale)
             this.carIcon.setScrollFactor(0) 
             this.carIcon.tint = 0x000000
             this.carIcon.objKey = this.car
             this.carIcon.setInteractive({ useHandCursor: true })
             
             // boat
-            this.boatIcon = this.add.image(0, 0, 'boat').setOrigin(0, 0.5).setScale(iconScale)
+            this.boatIcon = this.add.image(0, 0, 'boat').setOrigin(0, 0.5).setScale(this.iconScale)
             this.boatIcon.setScrollFactor(0)
             this.boatIcon.tint = 0x000000
             this.boatIcon.objKey = this.boat
             this.boatIcon.setInteractive({ useHandCursor: true })
             
             // globe
-            this.globeIcon = this.add.image(0, 0, 'globe').setOrigin(0, 0.5).setScale(iconScale)
+            this.globeIcon = this.add.image(0, 0, 'globe').setOrigin(0, 0.5).setScale(this.iconScale)
             this.globeIcon.setScrollFactor(0)
             this.globeIcon.setInteractive({ useHandCursor: true })
             

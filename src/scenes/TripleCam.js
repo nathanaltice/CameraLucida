@@ -3,6 +3,10 @@ class TripleCam extends Phaser.Scene {
         super("tripleCamScene")
     }
 
+    init() {
+        this.copterVelocity = 500
+    }
+
     preload() {
         // load assets
         this.load.path = "assets/"
@@ -13,9 +17,6 @@ class TripleCam extends Phaser.Scene {
     }
 
     create() {
-        // variables
-        this.copterVelocity = 500
-
         // add background
         this.add.image(0, 0, 'gradientBG').setOrigin(0)
 
@@ -56,7 +57,7 @@ class TripleCam extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys()
         this.swap = this.input.keyboard.addKey('S')
 
-        // DEBUG
+        // DEBUG (uncomment if you want to log the cameras)
         //console.log(this.cameras)
     }
 

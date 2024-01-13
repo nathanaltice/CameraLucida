@@ -3,6 +3,11 @@ class FourViews extends Phaser.Scene {
         super("fourViewsScene")
     }
 
+    init() {
+        this.copterVelocity = 500
+        this.bgSize = 3000
+    }
+
     preload() {
         // load assets
         this.load.path = "assets/"
@@ -12,10 +17,6 @@ class FourViews extends Phaser.Scene {
     }
 
     create() {
-        // variables
-        this.copterVelocity = 500
-        this.bgSize = 3000
-
         // add background
         this.add.image(0, 0, 'gradientBG').setOrigin(0)
 
